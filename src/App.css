@@ -1,14 +1,40 @@
-.App {
+/*.App {
   text-align: center;
-}
+}*/
 body{
   font-family: 'Poppins', sans-serif;
+  padding: 20px;
 }
 .movie-pic{
   
-  height:400px;
-  width:500px;
+  height:350px;
+  width:250px;
   object-fit: cover;
 }
+.movie-container{
+  
+  width:250px;
+  border-radius: 10px;
+  overflow: hidden;
 
-
+}
+.movie-specs
+{
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.movie-name{
+  font-size: 24px;
+  margin: 0px;
+}
+.rating
+{
+  font-size: 18px;
+}
+.movie-list{
+  display:flex;
+  gap:24px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}

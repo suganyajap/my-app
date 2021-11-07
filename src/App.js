@@ -2,7 +2,7 @@
 import './App.css';
 
 export default function App() {
-  {/*const users=[
+  /*const users=[
   { name:"ajith",
     pic:"https://st2.depositphotos.com/1104517/11965/v/950/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg"
   },
@@ -21,7 +21,7 @@ export default function App() {
   {users.map((ur)=>(
   <Msg name={ur.name} pic={ur.pic}  />))}
     </div>
-  );*/}
+  );*/
   const movies=[
     { 
       name:"Godzilla vs Gong",
@@ -65,19 +65,22 @@ export default function App() {
 
   return (
     <div className="App">
-     
+   <section className="movie-list">  
   {movies.map((mv)=>(
-  <Msg name={mv.name} poster={mv.poster} rating={mv.rating} summary={mv.summary} />))}
+  <Movie name={mv.name} poster={mv.poster} rating={mv.rating} summary={mv.summary} />))}
+  </section>
     </div>
   );
 }
-function Msg({name,poster,rating,summary}){
+function Movie({name,poster,rating,summary}){
   return (
-    <div>
-      <h2 className="movie-name">Movie Name:{name}</h2>
+    <div className="movie-container">
       <img className="movie-pic" src={poster} alt={name} />
-      <h2 className="rating">Rating:{rating}</h2>
-      <p className="summary">Summary:{summary}</p>
+      <div className="movie-specs">
+      <h3 className="movie-name">{name}</h3>
+      <p className="rating">⭐{rating}</p>
+      </div>
+      <p className="summary">{summary}</p>
       
       {/*<img className="user-pic" src={pic} alt={name} />
       <h1 className="user-name">Hello {name}🌍</h1>*/}
@@ -85,3 +88,9 @@ function Msg({name,poster,rating,summary}){
   );
   
 }
+/*function counter(){
+  const [like,setlike]=useState(0);
+  return(
+    div
+  );
+}*/
