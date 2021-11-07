@@ -108,7 +108,7 @@ function Movie({name,poster,rating,summary}){
       <p className="rating" style={styles}>⭐{rating}</p>
       </div>
       <button className="movie-show-button" onClick={()=>setShow(!show)}>{show ?"Hide" :"show"} description</button>
-     {show ? <p style={summaryStyles} className="summary">{summary}</p>:""}
+      <p style={summaryStyles} className="summary">{summary}</p>
       <Counter />
       {/*<img className="user-pic" src={pic} alt={name} />
       <h1 className="user-name">Hello {name}🌍</h1>*/}
