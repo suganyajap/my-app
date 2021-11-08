@@ -1,29 +1,14 @@
 //import logo from './logo.svg';
-import {useState} from 'react';
+//import { useState } from 'react/cjs/react.development';
 import './App.css';
+//import { useState } from 'react';
+import { MovieList } from './MovieList';
 
 
 export default function App() {
-  /*const users=[
-  { name:"ajith",
-    pic:"https://st2.depositphotos.com/1104517/11965/v/950/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg"
-  },
-   {name:"renu",
-   pic:"https://st2.depositphotos.com/1104517/11965/v/950/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg"
-  },
-  {name:"vani",
-  pic:"https://st2.depositphotos.com/1104517/11965/v/950/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg"
-},
-];
-  return (
-    <div className="App">
-     {/* <Msg name="ajith"/>
-      <Msg name="renu" />
-  <Msg name="vani"/>
-  {users.map((ur)=>(
-  <Msg name={ur.name} pic={ur.pic}  />))}
-    </div>
-  );*/
+ 
+  
+    
   const movies=[
     { 
       name:"Godzilla vs Gong",
@@ -67,58 +52,10 @@ export default function App() {
 
   return (
     <div className="App">
+   
    <MovieList movies={movies}/>
-    </div>
-  );
-}
-
-function MovieList({movies})
-{
-  return(
-    <section className="movie-list">  
-  {movies.map(({name,rating,summary,poster})=>(
-  <Movie name={name} poster={poster} rating={rating} summary={summary} />))}
-  </section>
-  );
-}
-
-function Counter(){
-  const [like,setLike]=useState(0);
-  const [dislike,setDisLike]=useState(0);
-  return(
-    <div className="counter-container">
-      <button className="likes-dislikes" onClick={()=>{setLike(like+1)}}>👍{like}</button>
-      <button className="likes-dislikes" onClick={()=>{setDisLike(dislike+1)}}>👎{dislike}</button>
-    </div>
-
-  );
-}
-
-function Movie({name,poster,rating,summary}){
-  const [show,setShow]=useState(true);
-  const styles={color:rating<7?"crimson":"green",fontWeight:"bold",};
-  const summaryStyles={
-    display:show ? "block":"none",
-  };
-  return (
-    <div className="movie-container">
-      <img className="movie-pic" src={poster} alt={name} />
-      <div className="movie-specs">
-      <h3 className="movie-name">{name}</h3>
-      <p className="rating" style={styles}>⭐{rating}</p>
-      </div>
-      <button className="movie-show-button" onClick={()=>setShow(!show)}>{show ?"Hide" :"show"} description</button>
-      <p style={summaryStyles} className="summary">{summary}</p>
-      <Counter />
-      {/*<img className="user-pic" src={pic} alt={name} />
-      <h1 className="user-name">Hello {name}🌍</h1>*/}
-    </div>
-  );
   
-}
-/*function counter(){
-  const [like,setlike]=useState(0);
-  return(
-    div
+    </div>
   );
-}*/
+}
+
