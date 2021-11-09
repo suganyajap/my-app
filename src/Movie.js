@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Counter } from './Counter';
+import Button from '@mui/material/Button';
 
 
 export function Movie({ name, poster, rating, summary }) {
@@ -15,11 +16,10 @@ export function Movie({ name, poster, rating, summary }) {
         <h3 className="movie-name">{name}</h3>
         <p className="rating" style={styles}>⭐{rating}</p>
       </div>
-      <button className="movie-show-button" onClick={() => setShow(!show)}>{show ? "Hide" : "show"} description</button>
+      <Button className="movie-show-button" onClick={() => setShow(!show)} variant="contained">{show ? "Hide" : "show"} description</Button>
       <p style={summaryStyles} className="summary">{summary}</p>
       <Counter />
-      {/*<img className="user-pic" src={pic} alt={name} />
-            <h1 className="user-name">Hello {name}🌍</h1>*/}
+      
     </div>
   );
 
