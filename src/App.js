@@ -1,15 +1,18 @@
 //import logo from './logo.svg';
 //import { useState } from 'react/cjs/react.development';
+import { TextField } from '@mui/material';
+import { useState } from 'react';
 import './App.css';
 //import { useState } from 'react';
 import { MovieList } from './MovieList';
+import Button from '@mui/material/Button';
 
 
 export default function App() {
  
   
     
-  const movies=[
+  const INITIAL_MOVIES=[
     { 
       name:"Godzilla vs Gong",
       poster:"https://images.hdqwalls.com/wallpapers/godzilla-vs-king-kong-6f.jpg",
@@ -49,13 +52,60 @@ export default function App() {
   summary:"Loki revolves around the mischievous villain escaping the clutches of The Avengers and getting caught by the Time Variance Authority. This sends him on a mission to catch the different antagonist who has been troubling the timelines"
 },
   ];
-
+  const [movies,setMovies]=useState(INITIAL_MOVIES);
+  
   return (
     <div className="App">
    
-   <MovieList movies={movies}/>
+   <AddMovie movies={movies} setMovies={setMovies} />
+   <MovieList movies={movies} />
   
     </div>
   );
 }
 
+function AddMovie({movies,setMovies}){
+  const [name,setName]=useState("");
+  const [poster,setPoster]=useState("");
+  const [rating,setRating]=useState("");
+  const [summary,setSummary]=useState("");
+  
+  const addMovie=()=>{
+    const newMovie ={
+      name,
+      poster,
+      rating,
+      summary,
+    };//shorthand
+    setMovies([...movies,newMovie]);
+  };
+  return(
+
+    <div className="add-movie-form">
+     <TextField
+     value={name}
+     onChange={(event)=>setName(event.target.value)}
+     label="Name"
+     variant="standard" />
+
+<TextField
+     value={poster}
+     onChange={(event)=>setPoster(event.target.value)}
+     label="poster"
+     variant="standard" />
+
+<TextField
+     value={rating}
+     onChange={(event)=>setRating(event.target.value)}
+     label="rating"
+     variant="standard" />
+
+<TextField
+     value={summary}
+     onChange={(event)=>setSummary(event.target.value)}
+     label="summary"
+     variant="standard" />
+     <Button onClick={addMovie} variant="outlined">Add Movie</Button>
+   </div>
+  );
+}
