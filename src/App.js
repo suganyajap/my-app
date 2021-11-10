@@ -6,6 +6,8 @@ import './App.css';
 //import { useState } from 'react';
 import { MovieList } from './MovieList';
 import Button from '@mui/material/Button';
+//import { Route, Router } from 'react-router';
+import { BrowserRouter as Router,Route,Switch,Link } from 'react-router-dom';
 
 
 export default function App() {
@@ -51,16 +53,47 @@ export default function App() {
   rating:8.3,
   summary:"Loki revolves around the mischievous villain escaping the clutches of The Avengers and getting caught by the Time Variance Authority. This sends him on a mission to catch the different antagonist who has been troubling the timelines"
 },
+{
+  name:"96",
+  poster:"https://www.teahub.io/photos/full/3-30405_96-movie-posters-hd.jpg",
+  rating:8.3,
+  summary:"K Ramachandran, a photographer, gets nostalgic after he visits his school in his hometown. During a reunion with his classmates, he meets Janaki, his childhood sweetheart."
+},
+{
+  name:"Moana",
+  poster:"https://lumiere-a.akamaihd.net/v1/images/p_moana_20530_214883e3.jpeg",
+  rating:7.3,
+  summary:"An adventurous teenager sails out on a daring mission to save her people. During her journey, Moana meets the once-mighty demigod Maui, who guides her in her quest to become a master way-finder. Together they sail across the open ocean on an action-packed voyage, encountering enormous monsters and impossible odds. Along the way, Moana fulfills the ancient quest of her ancestors and discovers the one thing she always sought: her own identity."
+},
   ];
   const [movies,setMovies]=useState(INITIAL_MOVIES);
   
   return (
-    <div className="App">
-   
-   <AddMovie movies={movies} setMovies={setMovies} />
-   <MovieList movies={movies} />
-  
-    </div>
+    
+   <Router>
+     <div>
+       <nav className="nav-bar">
+         <ul>
+           <li><Link to="/add-movies">AddMovie</Link></li>
+           <li><Link to="/movies">Movies</Link></li>
+           <li><Link to="/color-game">ColorGame</Link></li>
+         </ul>
+         </nav>
+         
+       <Switch>
+           <Route path="/add-movies">
+           <AddMovie movies={movies} setMovies={setMovies} />
+           </Route>
+           <Route path="/movies">
+           <MovieList movies={movies} />
+           </Route>
+           <Route path="/color-game">
+           <AddColor />
+           </Route>
+        </Switch>
+   </div>
+  </Router>
+    
   );
 }
 
@@ -108,4 +141,37 @@ function AddMovie({movies,setMovies}){
      <Button onClick={addMovie} variant="outlined">Add Movie</Button>
    </div>
   );
+}
+
+function AddColor() {
+  const [color, setColor] = useState("red");
+  const styles = { backgroundColor: color };
+  const [colors, setColors] = useState(["teal", "orange", "lavender"]);
+  return (
+    <div className="add-color-form">
+      <TextField
+        value={color}
+        onChange={(event) => setColor(event.target.value)}
+        style={styles}
+        label="enter a color" 
+        variant="standard" />
+      <Button variant="outlined" onClick={() => setColors([...colors, color])}>Add color</Button>
+
+      {colors.map((clr, index) => (
+        <ColorBox key={index} color={clr} />
+      ))}
+    </div>
+  );
+}
+
+
+
+function ColorBox({ color }) {
+  const styles = {
+    backgroundColor: color,
+    height: "25px",
+    width: "250px",
+    marginTop: "10px",
+  };
+  return <div style={styles}></div>;
 }

@@ -51,6 +51,7 @@ body{
   margin-bottom: 10px;
 }
 .add-color-form{
+  margin: 20px;
   display: flex;
   gap: 10px;
   flex-direction: column;
@@ -63,4 +64,16 @@ body{
   flex-direction: column;
   
 
+}
+
+ul{
+  list-style-type:none;
+  display: flex;
+  justify-content: space-around;
+  
+}
+.nav-bar{
+  background-color:skyblue;
+  height: 50px;
+  padding: 10px;
 }
