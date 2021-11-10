@@ -74,6 +74,7 @@ export default function App() {
      <div>
        <nav className="nav-bar">
          <ul>
+           <li><Link to="/">Home</Link></li>
            <li><Link to="/add-movies">AddMovie</Link></li>
            <li><Link to="/movies">Movies</Link></li>
            <li><Link to="/color-game">ColorGame</Link></li>
@@ -81,6 +82,9 @@ export default function App() {
          </nav>
          
        <Switch>
+       <Route exact path="/">
+           <Welcome />
+           </Route>
            <Route path="/add-movies">
            <AddMovie movies={movies} setMovies={setMovies} />
            </Route>
@@ -97,6 +101,13 @@ export default function App() {
   );
 }
 
+function Welcome(){
+  return(
+    <div>
+      <h3>Welcome to home!!!</h3>
+    </div>
+  );
+}
 function AddMovie({movies,setMovies}){
   const [name,setName]=useState("");
   const [poster,setPoster]=useState("");
