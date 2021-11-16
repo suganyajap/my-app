@@ -110,7 +110,7 @@ export default function App() {
   return (
     
     <ThemeProvider theme={theme}>
-      <Paper elevation={4} style={{bordeRadius:"0px",minHeight:"100vh"}} />
+      <Paper elevation={4} style={{bordeRadius:"0px",minHeight:"100vh"}} >
      <div className="App">
        <AppBar position="static" style={{marginBottom:"24px"}}>
      <Toolbar variant="dence">
@@ -180,7 +180,7 @@ export default function App() {
            
         </Switch>
    </div>
-   <Paper elevation={3} />
+    </Paper>
    </ThemeProvider>
     
   );
@@ -199,7 +199,7 @@ function TicTacToe(){
     null,
     null
     ]);
-    const [isXTern, setIsXTern]=useState(true);
+    const [isXTurn, setIsXTurn]=useState(true);
 
     
   const decideWinner=(board)=>{
@@ -211,7 +211,7 @@ function TicTacToe(){
       [1,4,7],
       [2,5,8],
       [0,4,8],
-      [7,4,6],
+      [2,4,6],
     ];
     //if we have a winning condition on board then we have a winner
     for(let i=0;i<lines.length;i++)
@@ -232,19 +232,19 @@ function TicTacToe(){
   
    //create the copy of the board and then update the clicked box
    //update only untouched box
-   if(winner===null && !board[index]){
+   if(winner===null && board[index]===null){
     const boardCopy=[...board];
-    boardCopy[index]=isXTern ? "X" : "O";
+    boardCopy[index]=isXTurn ? "X" : "O";
     setBoard(boardCopy);
    //togggle xTern
-   setIsXTern(!isXTern);
+   setIsXTurn(!isXTurn);
   }
 };
   return(
     <div className="full-game">
     <div className="board">
       {board.map((val,index)=>(
-        <GameBox onPlayerClick={()=>handleClick(index)}/>
+        <GameBox val={val} onPlayerClick={()=>handleClick(index)} />
       ))}
     </div>
     {winner ? <h2> Winner is: {winner}</h2>: " "}

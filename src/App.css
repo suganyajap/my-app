@@ -96,16 +96,18 @@ nav{
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  border: 1px solid black;
   }
   .board{
     display: grid;
     grid-template-columns:repeat(3,1fr);
     width: min-content;
   }
-  /*.full-game{
+  .full-game{
     display: flex;
     flex-direction: column;
-    /*min-height: 100vh;
+    min-height: 100vh;
     justify-content: center;
     align-items: center;
-  }*/
+  }

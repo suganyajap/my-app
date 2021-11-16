@@ -1,11 +1,11 @@
 //import { useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-//import { KeyboardBackspaceIcon } from '@mui/icons-material/KeyboardBackspace';
-//import Button from '@mui/material/Button';
+import { useParams,useHistory } from 'react-router-dom';
+import { KeyboardBackspaceIcon } from '@mui/icons-material/KeyboardBackspace';
+import Button from '@mui/material/Button';
 
 export function MovieDetails() {
-  //const history=useHistory();
+  const history=useHistory();
   const { id } = useParams();
   //const movie = movies[id];
   console.log("this id is",id);
@@ -16,7 +16,7 @@ export function MovieDetails() {
   })
     .then((data)=>data.json())
     .then((mv)=>setMovie(mv));
-  },[]);
+  });
   
   const styles = { color: movie.rating < 7 ? "crimson" : "green", fontWeight: "bold", };
 
@@ -38,7 +38,7 @@ export function MovieDetails() {
           <p className="rating" style={styles}>⭐{movie.rating}</p>
         </div>
         <p className="summary">{movie.summary}</p>
-       {/*<Button onClick={()=> history.goBack()} variant="outlined" startIcon={<KeyboardBackspaceIcon />}>Back</Button>*/}
+       <Button onClick={()=> history.goBack()} variant="outlined" startIcon={<KeyboardBackspaceIcon />}>Back</Button>
       </div>
     </div>
   );
