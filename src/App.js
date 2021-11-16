@@ -20,6 +20,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import { useHistory} from "react-router-dom";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import useWindowSize from 'react-use/lib/useWindowSize';
+import Confetti from 'react-confetti';
 
 
 export default function App() {
@@ -187,6 +189,7 @@ export default function App() {
 }
 
 function TicTacToe(){
+  const { width, height } = useWindowSize();
   const [board, setBoard]=useState(
     [
     null,
@@ -241,7 +244,12 @@ function TicTacToe(){
   }
 };
   return(
+    
     <div className="full-game">
+    {winner ?  <Confetti
+      width={width}
+      height={height}
+    />:""}
     <div className="board">
       {board.map((val,index)=>(
         <GameBox val={val} onPlayerClick={()=>handleClick(index)} />
