@@ -20,8 +20,9 @@ import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import { useHistory} from "react-router-dom";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import useWindowSize from 'react-use/lib/useWindowSize';
-import Confetti from 'react-confetti';
+import { TicTacToe } from './TicTacToe';
+
+import { BasicForm } from './BasicForm';
 
 
 export default function App() {
@@ -141,6 +142,11 @@ export default function App() {
        color="inherit"
        onClick={()=>history.push("/tick-tac-toe")}
        >Tick-TAC-TOE Game</Button>
+       <Button
+       variant="text"
+       color="inherit"
+       onClick={()=>history.push("/form")}
+       >Basic Form</Button>
         <Button 
         startIcon={mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
         style={{ marginLeft:"auto" }}
@@ -176,6 +182,9 @@ export default function App() {
            <Route path="/tick-tac-toe">
            <TicTacToe />
            </Route>
+           <Route path="/form">
+           <BasicForm />
+           </Route>
            <Route path="**">
            <NotFound />
            </Route>
@@ -187,84 +196,3 @@ export default function App() {
     
   );
 }
-
-function TicTacToe(){
-  const { width, height } = useWindowSize();
-  const [board, setBoard]=useState(
-    [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-    ]);
-    const [isXTurn, setIsXTurn]=useState(true);
-
-    
-  const decideWinner=(board)=>{
-    const lines=[
-      [0,1,2],
-      [3,4,5],
-      [6,7,8],
-      [0,3,6],
-      [1,4,7],
-      [2,5,8],
-      [0,4,8],
-      [2,4,6],
-    ];
-    //if we have a winning condition on board then we have a winner
-    for(let i=0;i<lines.length;i++)
-    {
-      const [a,b,c]=lines[i];
-      if(board[a]!==null && board[a]===board[b] && board[b]===board[c] ){
-        console.log("winner is",board[a]);
-        return board[a];
-      }
-    }
-    return null;//if no winner
-  };
-
-  const winner=decideWinner(board);
-
-  const handleClick=(index)=>{
-    console.log(index);
-  
-   //create the copy of the board and then update the clicked box
-   //update only untouched box
-   if(winner===null && board[index]===null){
-    const boardCopy=[...board];
-    boardCopy[index]=isXTurn ? "X" : "O";
-    setBoard(boardCopy);
-   //togggle xTern
-   setIsXTurn(!isXTurn);
-  }
-};
-  return(
-    
-    <div className="full-game">
-    {winner ?  <Confetti
-      width={width}
-      height={height}
-    />:""}
-    <div className="board">
-      {board.map((val,index)=>(
-        <GameBox val={val} onPlayerClick={()=>handleClick(index)} />
-      ))}
-    </div>
-    {winner ? <h2> Winner is: {winner}</h2>: " "}
-    </div>
-  );
-}
-function GameBox({onPlayerClick,val}){
- // const [val,setVal]=useState(null);
-  const styles = { color:val==="X" ? "green" : "red" }
-  return <div 
-  style={styles}
-  onClick={onPlayerClick}
-  className="game-box">{val}</div>;
-}
-

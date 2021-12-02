@@ -16,7 +16,7 @@ export function MovieDetails() {
   })
     .then((data)=>data.json())
     .then((mv)=>setMovie(mv));
-  });
+  },[id]);
   
   const styles = { color: movie.rating < 7 ? "crimson" : "green", fontWeight: "bold", };
 

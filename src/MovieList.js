@@ -26,7 +26,7 @@ import { useEffect,useState } from "react";
   const history=useHistory();
   return (
     <section className="movie-list">
-      {movies.map(({ name, rating, summary, poster ,id},index) => (
+      {movies.map(({ name, rating, summary, poster ,id}) => (
         <Movie 
         name={name}
          poster={poster} 
@@ -53,7 +53,7 @@ import { useEffect,useState } from "react";
         editButton={<IconButton 
           style={{marginLeft:"auto"}}
           className="movie-show-button" 
-          onClick={() => history.push("/movies/edit/" + index)}
+          onClick={() => history.push("/movies/edit/" + id)}
           color="primary" 
           aria-label="movie edit" >
             <EditIcon />
