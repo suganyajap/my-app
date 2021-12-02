@@ -4,13 +4,15 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { useHistory } from "react-router-dom";
 import { useEffect,useState } from "react";
+import {API_URL} from "./global-constants";
 
 //export function MovieList({ movies,setMovies }) {
+ 
   export function MovieList() {
   const [movies,setMovies]=useState([]);
   //app mounted only once->useEffect->fetch-setMovies
   const getMovies=()=> {
-    fetch("https://6166c4e813aa1d00170a6715.mockapi.io/movies")
+    fetch(`${API_URL}/movies`)
     .then((data)=>data.json())
     .then((mvs)=>setMovies(mvs));
   };
@@ -18,7 +20,7 @@ import { useEffect,useState } from "react";
   useEffect(getMovies,[]);
   //after delete refresh
   const deleteMovie=(id)=>{
-    fetch(`https://6166c4e813aa1d00170a6715.mockapi.io/movies/${id}`,
+    fetch(`${API_URL}/movies/${id}`,
           {method:"DELETE",
         }).then(()=>getMovies());
   }
@@ -26,16 +28,17 @@ import { useEffect,useState } from "react";
   const history=useHistory();
   return (
     <section className="movie-list">
-      {movies.map(({ name, rating, summary, poster ,id}) => (
+      {movies.map(({ name, rating, summary, poster ,id,_id}) => (
         <Movie 
+        key={_id}
         name={name}
          poster={poster} 
          rating={rating} 
          summary={summary} 
-         id={id}
+         id={_id}
         deleteButton={<IconButton 
            
-          onClick={() =>  deleteMovie(id)}
+          onClick={() =>  deleteMovie(_id)}
             
           //   console.log("deleting...",index);
           //   const deleteIdx=index;
@@ -53,7 +56,7 @@ import { useEffect,useState } from "react";
         editButton={<IconButton 
           style={{marginLeft:"auto"}}
           className="movie-show-button" 
-          onClick={() => history.push("/movies/edit/" + id)}
+          onClick={() => history.push("/movies/edit/" + _id)}
           color="primary" 
           aria-label="movie edit" >
             <EditIcon />

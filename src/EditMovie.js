@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import { useParams,useHistory } from 'react-router-dom';
 import { useFormik } from "formik";
 import * as yup from "yup";
+import {API_URL} from "./global-constants";
 
 export function EditMovie() {
   const { id } = useParams();
@@ -13,7 +14,7 @@ export function EditMovie() {
 
   const [movie,setMovie]=useState(null);
   useEffect(()=>{
-    fetch(`https://6166c4e813aa1d00170a6715.mockapi.io/movies/${id}`,
+    fetch(`${API_URL}/movies/${id}`,
     {method:"GET",
   })
     .then((data)=>data.json())
@@ -73,7 +74,7 @@ export function EditMovie() {
   const editMovie = (updatedMovie) => {
     
    
-    fetch(`https://6166c4e813aa1d00170a6715.mockapi.io/movies/${movie.id}`,
+    fetch(`${API_URL}/movies/${movie.id}`,
   {
     method:"PUT",
     body:JSON.stringify(updatedMovie),

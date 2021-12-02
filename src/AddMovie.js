@@ -3,6 +3,7 @@ import Button from '@mui/material/Button';
 import { useHistory} from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import {API_URL} from "./global-constants";
 
 export function AddMovie() {
   const history =useHistory();
@@ -63,7 +64,7 @@ export function AddMovie() {
    // setMovies([...movies, newMovie]);
     
 
-    fetch(`https://6166c4e813aa1d00170a6715.mockapi.io/movies/`,
+    fetch(`${API_URL}/movies/`,
           {
             method:"POST",
             body:JSON.stringify(newMovie),
